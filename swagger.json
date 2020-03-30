@@ -1,0 +1,200 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ToDo API",
+    "description": "A simple example ASP.NET Core Web API",
+    "termsOfService": "https://example.com/terms",
+    "contact": {
+      "name": "Shayne Boyer",
+      "url": "https://twitter.com/spboyer",
+      "email": ""
+    },
+    "license": {
+      "name": "Use under LICX",
+      "url": "https://example.com/license"
+    },
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Notifications": {
+      "get": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "test values",
+        "description": "Sample request:\r\n            \r\n    POST /Todo\r\n    {\r\n       \"id\": 1,\r\n       \"name\": \"Item1\",\r\n       \"isComplete\": true\r\n    }",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "201": {
+            "description": "Returns the newly created item"
+          },
+          "400": {
+            "description": "If the item is null"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Notifications"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Notifications"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Notifications"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Notifications"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Subscribers": {
+      "post": {
+        "tags": [
+          "Subscribers"
+        ],
+        "summary": "Create new subscriber",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Subscriber"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Subscriber"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Subscriber"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Subscriber"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Topics": {
+      "post": {
+        "tags": [
+          "Topics"
+        ],
+        "summary": "Creates new topic",
+        "requestBody": {
+          "description": "topic name",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Topics"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Topics"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Topics"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Topics"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Notifications": {
+        "type": "object",
+        "properties": {
+          "Arn": {
+            "type": "string",
+            "nullable": true
+          },
+          "Message": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Subscriber": {
+        "type": "object",
+        "properties": {
+          "TopicArn": {
+            "type": "string",
+            "description": "arn name provided by aws",
+            "nullable": true
+          },
+          "Protocol": {
+            "type": "string",
+            "description": "protocol e.g. sms",
+            "nullable": true
+          },
+          "EndPoint": {
+            "type": "string",
+            "description": "endpoint to add e.g. phone number, email, etc",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Subscriber model"
+      },
+      "Topics": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
